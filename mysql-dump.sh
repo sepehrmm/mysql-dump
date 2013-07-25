@@ -1,7 +1,9 @@
 #!/bin/bash
-# Daniel Verner 
-# CarrotPlant LLC
-# 2011
+# author: Sepehr Sadatifar 
+# company: Rastasoft (http://rastasoft.ir/)
+# blog: http://atroot.com/
+#
+# original script by: Daniel Verner (http://carrotplant.com/en/blog/how-to-dump-all-mysql-databases-into-separate-files)
 # Backup each mysql databases into a different file, rather than one big file
 # Optionally files can be gzipped (dbname.gz)
 #
@@ -12,19 +14,16 @@
 #	-z gzip enabled
 #
 # Note: The script will prompt for a password, you cannot specify it as command line argument for security reasons
-#
-# based on the solution from: sonia 16-nov-05 (http://soniahamilton.wordpress.com/2005/11/16/backup-multiple-databases-into-separate-files/)
-
 
 PROG_NAME=$(basename $0)
-USER=""
+USER="root"
 PASSWORD=""
 OUTPUTDIR=${PWD}
 GZIP_ENABLED=0
 GZIP=""
 
-MYSQLDUMP="/usr/bin/mysqldump"
-MYSQL="/usr/bin/mysql"
+MYSQLDUMP=`which mysqldump`
+MYSQL=`which mysql`
 
 while getopts u:o:z OPTION
 do
